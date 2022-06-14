@@ -1,0 +1,29 @@
+.fibonacci_page_content {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.input_for_string {
+  max-width: 377px;
+}
+
+.circles_box {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  justify-content: center;
+  padding-top: 74px;
+  flex-wrap: wrap;
+  max-width: 944px;
+  margin: auto;
+}
+
+.circle_visible {
+  display: flex;
+  margin-bottom: 48px;
+}
+
+.circle_invisible {
+  display: none;
+}

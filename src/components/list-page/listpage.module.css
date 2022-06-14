@@ -1,0 +1,36 @@
+.manage_buttons_conteiner {
+  max-width: 952px;
+  display: grid;
+  grid-template-columns: 204px repeat(4, 1fr);
+  column-gap: 12px;
+  grid-template-rows: 60px 60px;
+  row-gap: 38px;
+  margin: auto;
+  margin-bottom: 90px;
+}
+
+.extra_button_for_add {
+  grid-column: 2/4;
+  height: 60px;
+}
+
+.extra_button_for_delete {
+  height: 60px;
+  grid-column: 4/6;
+}
+
+.elements_wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 130px;
+  gap: 25px;
+}
+
+.circles_box {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  justify-content: center;
+  gap: 22px;
+}

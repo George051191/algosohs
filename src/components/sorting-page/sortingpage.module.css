@@ -1,0 +1,58 @@
+.manage_box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  max-width: 980px;
+  margin: auto;
+  justify-content: space-between;
+}
+
+.inputs_box {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+
+.button_box {
+  display: flex;
+  flex-direction: row;
+  max-width: 707px;
+  width: 100%;
+  justify-content: start;
+}
+
+.button_box > button {
+  width: 205px;
+}
+
+.range_box {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  margin-top: 48px;
+  gap: 10px;
+  transform: rotate(180deg);
+  height: 320px;
+}
+
+.column_extra > p {
+  position: absolute;
+  top: -26px;
+  transform: rotate(180deg);
+}
+
+.column_extra {
+  position: relative;
+}
+
+.column_on_change > div {
+  background-color: var(--changing-color);
+}
+
+.column_default > div {
+  background-color: var(--default-color);
+}
+
+.column_algo_end > div {
+  background-color: var(--modified-color);
+}

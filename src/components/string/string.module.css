@@ -1,0 +1,18 @@
+.input_for_string {
+  max-width: 377px;
+}
+
+.string_page_content {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.circles_box {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 146px;
+  flex-wrap: wrap;
+}
