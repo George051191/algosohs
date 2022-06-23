@@ -29,6 +29,7 @@ export const SortingPage: React.FC = () => {
     for (const step of steps) {
       const { type, data, arr } = step;
       const [first, second, third] = data;
+      await sleep(1000);
 
       if (type === "swap") {
         document
