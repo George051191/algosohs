@@ -2,30 +2,36 @@ import { randomNumberCreator } from "../../helpers/random_arr";
 import { TStep } from "./types";
 
 export const randomArr = (
-  callback: React.Dispatch<React.SetStateAction<number[] | undefined>>
+  callback: React.Dispatch<React.SetStateAction<number[] | undefined>>,
+  callbackForArray: (arr: number[]) => number[],
+  createNumberFunc:(key1:number,key2:number)=>number
 ) => {
-  let size = randomNumberCreator(17, 3);
+  let size = createNumberFunc(17, 3);
 
   let arr: number[] = [];
   for (let i = 0; i <= size; i++) {
-    arr[i] = randomNumberCreator(0, 100);
+    arr[i] = createNumberFunc(0, 100);
   }
-  let filteredArr = arr.filter((item, index) => {
-    return arr.indexOf(item) === index;
-  });
 
-  callback(filteredArr);
+
+  callback(callbackForArray(arr));
 };
 ////рефакт пузырька
-export const getBubbleSortAscendSteps = (array: number[] = []): TStep[] => {
+export const getBubbleSortAscendSteps = (array: number[]=[]): TStep[]  => {
+  
   let copy: number[] = [...array];
   let steps: TStep[] = [];
+  if (array.length === 0) {
+    steps.push({ type: 'default', data: [], arr: [] });
+    return  steps
+  }
 
+ 
   for (let j = copy!.length - 1; j >= 0; j--) {
     for (let i = 0; i <= j; i++) {
       let first = i;
       let second = i + 1;
-      console.log(i, i + 1);
+    
       steps.push({ type: "select", data: [first, second], arr: [...copy] });
 
       if (copy[i] > copy[i + 1]) {
@@ -45,12 +51,18 @@ export const getBubbleSortAscendSteps = (array: number[] = []): TStep[] => {
     }
     steps.push({ type: "end", data: [j], arr: [...copy] });
   }
+
   return steps;
 };
 
 export const getBubbleSortDesscendSteps = (array: number[] = []): TStep[] => {
   let copy: number[] = [...array];
   let steps: TStep[] = [];
+
+  if (array.length === 0) {
+    steps.push({ type: 'default', data: [], arr: [] });
+    return  steps
+  }
 
   for (let j = copy!.length - 1; j >= 0; j--) {
     for (let i = 0; i <= j; i++) {
@@ -82,6 +94,12 @@ export const getBubbleSortDesscendSteps = (array: number[] = []): TStep[] => {
 export const getSelectSortAscendSteps = (arr: number[] = []): TStep[] => {
   let copy: number[] = [...arr];
   let steps: TStep[] = [];
+
+  if (arr.length === 0) {
+    steps.push({ type: 'default', data: [], arr: [] });
+    return  steps
+  }
+
   const { length } = copy;
   for (let i = 0; i < length; i++) {
     let ind = i;
@@ -105,6 +123,11 @@ export const getSelectSortAscendSteps = (arr: number[] = []): TStep[] => {
 export const getSelectSortDescendSteps = (arr: number[] = []): TStep[] => {
   let copy: number[] = [...arr];
   let steps: TStep[] = [];
+
+  if (arr.length === 0) {
+    steps.push({ type: 'default', data: [], arr: [] });
+    return  steps
+  }  
   const { length } = copy;
   for (let i = 0; i < length; i++) {
     let ind = i;
