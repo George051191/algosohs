@@ -16,6 +16,9 @@ import {
 
 import { TStep } from "./types";
 import { sleep } from "../../helpers/sleep-func";
+import { makeUniqueArray } from "../../helpers/random_arr";
+import { randomNumberCreator } from "../../helpers/random_arr";
+import { valueCheck } from "../fibonacci-page/utils";
 
 export const SortingPage: React.FC = () => {
   const [array, setArray] = React.useState<number[]>();
@@ -24,7 +27,7 @@ export const SortingPage: React.FC = () => {
   const [isWorking, setWorkingStatus] = React.useState<boolean>();
   const [isArrayCreated, setArrayStatus] = React.useState<boolean>();
   const [rule, setRule] = React.useState<Direction>();
-
+  
   const animateSteps = async (steps: TStep[]) => {
     for (const step of steps) {
       const { type, data, arr } = step;
@@ -84,10 +87,11 @@ export const SortingPage: React.FC = () => {
     }
   };
 
+
   const algoStart = async (algo: string, funcChoice: Choice) => {
     algo && funcChoice && setWorkingStatus(true);
     let steps = [];
-    if (algo === Direction.Ascending && funcChoice === Choice.bubble) {
+    if (algo === Direction.Ascending && funcChoice === Choice.bubble ) {
       steps = getBubbleSortAscendSteps(array);
       await animateSteps(steps);
       setWorkingStatus(false);
@@ -139,7 +143,7 @@ export const SortingPage: React.FC = () => {
         <div className={styles.button_box}>
           <Button
             isLoader={isWorking && rule === Direction.Ascending}
-            disabled={isArrayCreated && funcChoice && buttonState && isWorking}
+            disabled={(isArrayCreated && funcChoice && buttonState && isWorking) || array?.length === 0}
             text="По возрастанию"
             sorting={Direction.Ascending}
             extraClass="mr-12"
@@ -152,7 +156,7 @@ export const SortingPage: React.FC = () => {
           />
           <Button
             isLoader={isWorking && rule === Direction.Descending}
-            disabled={isArrayCreated && funcChoice && buttonState && isWorking}
+            disabled={(isArrayCreated && funcChoice && buttonState && isWorking) || array?.length === 0 }
             text="По убыванию"
             sorting={Direction.Descending}
             extraClass="mr-40"
@@ -164,10 +168,10 @@ export const SortingPage: React.FC = () => {
             }}
           />
           <Button
-            disabled={isArrayCreated && funcChoice && buttonState && isWorking}
+            disabled={isArrayCreated && funcChoice && buttonState && isWorking  }
             text="Новый массив"
             onClick={() => {
-              randomArr(setArray);
+              randomArr(setArray,makeUniqueArray,randomNumberCreator);
               setArrayStatus(true);
               getDefaultStyles();
             }}
@@ -186,3 +190,6 @@ export const SortingPage: React.FC = () => {
     </SolutionLayout>
   );
 };
+
+
+/* randomArr(setArray,makeUniqueArray,randomNumberCreator);  */
