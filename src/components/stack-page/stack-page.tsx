@@ -19,7 +19,7 @@ export const StackPage: React.FC = () => {
   const [deleteStatus, setDeleteStatus] = React.useState<boolean>();
   const [isChange, setChangeStatus] = React.useState<boolean>();
   const [isInProcess, setProcess] = React.useState<boolean>();
-
+  
   return (
     <SolutionLayout title="Стек">
       <div className={styles.manage_elements_box}>
@@ -28,9 +28,10 @@ export const StackPage: React.FC = () => {
           maxLength={4}
           isLimitText={true}
           onChange={(e) => setValue(e.currentTarget.value)}
+          onKeyUp={(e)=>{  if (value.match(/^[ ]+$/)){ setValue('')}} }
         />
         <Button
-          disabled={isInProcess || value.length === 0 || array.length > 9}
+          disabled={isInProcess || value.length === 0 || value === '' || array.length > 9}
           isLoader={addStatus}
           text="Добавить"
           onClick={() => {

@@ -286,6 +286,7 @@ export const ListPage: React.FC = () => {
           placeholder="Введите значение"
           isLimitText={true}
           onChange={(e) => setValue(e.currentTarget.value)}
+          onKeyUp={(e)=>{  if (value.match(/^[ ]+$/)){ setValue('')}} }
         />
         <Button
           disabled={isWorking || !value}
@@ -313,8 +314,10 @@ export const ListPage: React.FC = () => {
         />
         <Input
           value={index}
+          type='number'
           placeholder="Введите индекс"
           onChange={(e) => setIndex(e.currentTarget.value)}
+          onKeyUp={(e)=>{  if (index.match(/^[ ]+$/)){ setIndex('')}} }
         />
         <Button
           disabled={

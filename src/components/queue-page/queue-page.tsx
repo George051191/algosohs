@@ -76,10 +76,11 @@ export const QueuePage: React.FC = () => {
           maxLength={4}
           isLimitText={true}
           onChange={(e) => setValue(e.currentTarget.value)}
+          onKeyUp={(e)=>{  if (value.match(/^[ ]+$/)){ setValue('')}} }
         />
         <Button
           isLoader={addWorkingStatus}
-          disabled={!!!value || addButtonState}
+          disabled={!!!value || addButtonState || value === ''}
           onClick={setQueueMember}
           text="Добавить"
         />
