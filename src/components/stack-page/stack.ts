@@ -2,9 +2,7 @@ interface IStack<T> {
   push: (
     item: T,
     callback: React.Dispatch<React.SetStateAction<T[]>>,
-    callbackForColor: React.Dispatch<
-      React.SetStateAction<boolean | undefined>
-    >,
+    callbackForColor: React.Dispatch<React.SetStateAction<boolean | undefined>>,
     helper: (key: number) => void,
     ms: number,
     stopCallback: React.Dispatch<React.SetStateAction<boolean | undefined>>,
@@ -13,9 +11,7 @@ interface IStack<T> {
   ) => Promise<void>;
   pop: (
     callback: React.Dispatch<React.SetStateAction<T[]>>,
-    callbackForColor: React.Dispatch<
-      React.SetStateAction<boolean | undefined>
-    >,
+    callbackForColor: React.Dispatch<React.SetStateAction<boolean | undefined>>,
     helper: (key: number) => void,
     ms: number,
     stopCallback: React.Dispatch<React.SetStateAction<boolean | undefined>>,
@@ -32,9 +28,7 @@ export class Stack<T> implements IStack<T> {
   push = async (
     item: T,
     callback: React.Dispatch<React.SetStateAction<T[]>>,
-    callbackForColor: React.Dispatch<
-      React.SetStateAction<boolean | undefined>
-    >,
+    callbackForColor: React.Dispatch<React.SetStateAction<boolean | undefined>>,
     helper: (key: number) => void,
     ms: number,
     stopCallback: React.Dispatch<React.SetStateAction<boolean | undefined>>,

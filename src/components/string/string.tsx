@@ -18,7 +18,6 @@ export const StringComponent: React.FC = () => {
   const [buttonState, setButtonState] = React.useState(false);
   const [circleVisibility, setCircleVisibility] = React.useState(false);
 
-
   return (
     <SolutionLayout title="Строка">
       <div className={styles.string_page_content}>
@@ -38,8 +37,19 @@ export const StringComponent: React.FC = () => {
         <Button
           text={"Развернуть"}
           isLoader={buttonState}
-          disabled={buttonState || !(!!value)}
-          onClick={()=>reverseStarting(value, setCircleVisibility, setInputState, setButtonState, sleep, setValue,setStartIndex, setEndIndex)}
+          disabled={buttonState || !!!value}
+          onClick={() =>
+            reverseStarting(
+              value,
+              setCircleVisibility,
+              setInputState,
+              setButtonState,
+              sleep,
+              setValue,
+              setStartIndex,
+              setEndIndex
+            )
+          }
         />
       </div>
       <div className={styles.circles_box}>

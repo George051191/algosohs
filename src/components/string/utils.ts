@@ -19,8 +19,8 @@ export const findIndex = (
   }
 };
 
-
-export const reverseStarting = async (value: string,
+export const reverseStarting = async (
+  value: string,
   circleStateCallback: React.Dispatch<React.SetStateAction<boolean>>,
   inputStateCallback: React.Dispatch<React.SetStateAction<boolean>>,
   buttonStateCallback: React.Dispatch<React.SetStateAction<boolean>>,
@@ -39,12 +39,12 @@ export const reverseStarting = async (value: string,
     await helper(1000);
     startStateCallback(start);
     endStateCallback(end);
-    await helper(1000)
+    await helper(1000);
     const temp = arr[start];
     arr[start] = arr[end];
     arr[end] = temp;
     valueStateCallback(arr.join(""));
-    await helper(1000)
+    await helper(1000);
     start++;
     end--;
   }
@@ -52,5 +52,4 @@ export const reverseStarting = async (value: string,
   endStateCallback(13);
   inputStateCallback(false);
   buttonStateCallback(false);
-
-}
+};

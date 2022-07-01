@@ -4,7 +4,7 @@ import { TStep } from "./types";
 export const randomArr = (
   callback: React.Dispatch<React.SetStateAction<number[] | undefined>>,
   callbackForArray: (arr: number[]) => number[],
-  createNumberFunc:(key1:number,key2:number)=>number
+  createNumberFunc: (key1: number, key2: number) => number
 ) => {
   let size = createNumberFunc(17, 3);
 
@@ -13,25 +13,22 @@ export const randomArr = (
     arr[i] = createNumberFunc(0, 100);
   }
 
-
   callback(callbackForArray(arr));
 };
 ////рефакт пузырька
-export const getBubbleSortAscendSteps = (array: number[]=[]): TStep[]  => {
-  
+export const getBubbleSortAscendSteps = (array: number[] = []): TStep[] => {
   let copy: number[] = [...array];
   let steps: TStep[] = [];
   if (array.length === 0) {
-    steps.push({ type: 'default', data: [], arr: [] });
-    return  steps
+    steps.push({ type: "default", data: [], arr: [] });
+    return steps;
   }
 
- 
   for (let j = copy!.length - 1; j >= 0; j--) {
     for (let i = 0; i <= j; i++) {
       let first = i;
       let second = i + 1;
-    
+
       steps.push({ type: "select", data: [first, second], arr: [...copy] });
 
       if (copy[i] > copy[i + 1]) {
@@ -60,8 +57,8 @@ export const getBubbleSortDesscendSteps = (array: number[] = []): TStep[] => {
   let steps: TStep[] = [];
 
   if (array.length === 0) {
-    steps.push({ type: 'default', data: [], arr: [] });
-    return  steps
+    steps.push({ type: "default", data: [], arr: [] });
+    return steps;
   }
 
   for (let j = copy!.length - 1; j >= 0; j--) {
@@ -96,8 +93,8 @@ export const getSelectSortAscendSteps = (arr: number[] = []): TStep[] => {
   let steps: TStep[] = [];
 
   if (arr.length === 0) {
-    steps.push({ type: 'default', data: [], arr: [] });
-    return  steps
+    steps.push({ type: "default", data: [], arr: [] });
+    return steps;
   }
 
   const { length } = copy;
@@ -125,9 +122,9 @@ export const getSelectSortDescendSteps = (arr: number[] = []): TStep[] => {
   let steps: TStep[] = [];
 
   if (arr.length === 0) {
-    steps.push({ type: 'default', data: [], arr: [] });
-    return  steps
-  }  
+    steps.push({ type: "default", data: [], arr: [] });
+    return steps;
+  }
   const { length } = copy;
   for (let i = 0; i < length; i++) {
     let ind = i;
