@@ -29,6 +29,7 @@ export const FibonacciPage: React.FC = () => {
     let i = 0;
 
     while (i < fibonacciArray.length) {
+      await sleep(SHORT_DELAY_IN_MS);
       setCurrIndex(i);
       await sleep(SHORT_DELAY_IN_MS);
       i++;
@@ -49,7 +50,7 @@ export const FibonacciPage: React.FC = () => {
           onChange={(e) => setInputValue(e.currentTarget.value)}
         />
         <Button
-          text={"Развернуть"}
+          text={"Показать"}
           disabled={buttonState}
           isLoader={startLoader}
           onClick={setFibonacciNumbers}
