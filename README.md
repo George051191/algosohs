@@ -13,7 +13,7 @@
 - Работа визуализации алгоритмов и правильности отображения всех элементов проверена End-to-End тестированием, и при помощи 
 сравнения снапшотов
 
-[](https://github.com/George051191/algosohs/blob/main/src/images/%D0%9C%D0%91%D0%9E%D0%A3_%D0%90%D0%9B%D0%93%D0%9E%D0%A1%D0%9E%D0%A8_-_Google_Chrome_2022-07-05_18-10-39.gif)
+![](https://github.com/George051191/algosohs/blob/main/src/images/%D0%9C%D0%91%D0%9E%D0%A3_%D0%90%D0%9B%D0%93%D0%9E%D0%A1%D0%9E%D0%A8_-_Google_Chrome_2022-07-05_18-10-39.gif)
 
 ## Используемые технологии
 
