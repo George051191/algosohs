@@ -34,4 +34,4 @@
 - Выполните npm install && npm start в терминале, находясь в папке проекта.
 
 
-<font size=12 color=blue>Проект выполнен в рамках учебного курса "Веб-разработчик+" от color {red} Яндекс.Практикума</font>
+<span style="color:blue">some *blue* text</span>.
