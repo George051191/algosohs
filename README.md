@@ -34,4 +34,4 @@
 - Выполните npm install && npm start в терминале, находясь в папке проекта.
 
 
-Some Markdown text with <span style="color:blue">some *blue* text</span>.
+***Проект сделан в рамках учебного курса "Веб-разработчик+" Яндекс.Практикума ***
