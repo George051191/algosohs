@@ -9,7 +9,7 @@ import { setState } from "./utils";
 import { sleep } from "../../helpers/sleep-func";
 import { SHORT_DELAY_IN_MS } from "../../constants/delays";
 
-const queue = new Queue<string | null | number>(7);
+
 
 export const QueuePage: React.FC = () => {
   const [value, setValue] = React.useState("");
@@ -21,6 +21,7 @@ export const QueuePage: React.FC = () => {
   const [deleteWorkingStatus, setDeleteWorkingStatus] =
     React.useState<boolean>();
 
+  const queue = React.useMemo(()=> new Queue<string | null | number>(7), [] )
   const setQueueMember = async (): Promise<void> => {
     setAddWorkingStatus(true);
     queue.enqueue(value, setAddButtonState);
