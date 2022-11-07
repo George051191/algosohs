@@ -9,7 +9,7 @@ import { nanoid } from "nanoid";
 import { sleep } from "../../helpers/sleep-func";
 import { findHead, setColor } from "./utils";
 
-const st = new Stack<number | string>();
+
 
 export const StackPage: React.FC = () => {
   const [value, setValue] = React.useState("");
@@ -19,7 +19,7 @@ export const StackPage: React.FC = () => {
   const [deleteStatus, setDeleteStatus] = React.useState<boolean>();
   const [isChange, setChangeStatus] = React.useState<boolean>();
   const [isInProcess, setProcess] = React.useState<boolean>();
-
+  const st = React.useMemo(() =>  new Stack<number | string>(),[] )
   return (
     <SolutionLayout title="Стек">
       <div className={styles.manage_elements_box}>
