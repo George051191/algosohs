@@ -14,113 +14,84 @@ import {
   getSelectSortDescendSteps,
 } from "./utils";
 
-import { TStep } from "./types";
-import { sleep } from "../../helpers/sleep-func";
-import { makeUniqueArray } from "../../helpers/random_arr";
-import { randomNumberCreator } from "../../helpers/random_arr";
-import { valueCheck } from "../fibonacci-page/utils";
+import { TStep, TArrayItem } from "./types";
+
+import { makeUniqueArray, randomNumberCreator } from "../../helpers/random_arr";
+
+import { ElementStates } from "../../types/element-states";
 
 export const SortingPage: React.FC = () => {
-  const [array, setArray] = React.useState<number[]>();
+  const [array, setArray] = React.useState<TArrayItem[]>();
   const [funcChoice, setFuncChoice] = React.useState<Choice>();
   const [buttonState, setButtonState] = React.useState<boolean>();
   const [isWorking, setWorkingStatus] = React.useState<boolean>();
   const [isArrayCreated, setArrayStatus] = React.useState<boolean>();
   const [rule, setRule] = React.useState<Direction>();
 
-  const animateSteps = async (steps: TStep[]) => {
-    for (const step of steps) {
-      const { type, data, arr } = step;
-      const [first, second, third] = data;
-      await sleep(1000);
 
-      if (type === "swap") {
-        document
-          .querySelector(`.column-${first}`)
-          ?.classList.add(styles.column_on_change);
-        document
-          .querySelector(`.column-${second}`)
-          ?.classList.add(styles.column_on_change);
-      } else if (type === "select") {
-        document
-          .querySelector(`.column-${first}`)
-          ?.classList.add(styles.column_on_change);
-        document
-          .querySelector(`.column-${second}`)
-          ?.classList.add(styles.column_on_change);
-      }
-      if (type === "end") {
-        document
-          .querySelector(`.column-${first}`)
-          ?.classList.add(styles.column_algo_end);
-        Array.from(document.querySelectorAll(".node")).forEach((node) => {
-          node.classList.remove(styles.column_default, styles.column_on_change);
-        });
-      }
-      if (type === "default") {
-        document
-          .querySelector(`.column-${first}`)
-          ?.classList.add(styles.column_default);
-        document
-          .querySelector(`.column-${second}`)
-          ?.classList.add(styles.column_on_change);
-        document
-          .querySelector(`.column-${third}`)
-          ?.classList.add(styles.column_on_change);
-      }
-      if (type === "default_1") {
-        document
-          .querySelector(`.column-${first}`)
-          ?.classList.add(styles.column_on_change);
-        document
-          .querySelector(`.column-${second}`)
-          ?.classList.add(styles.column_default);
-        document
-          .querySelector(`.column-${third}`)
-          ?.classList.add(styles.column_on_change);
-      }
-
-      await sleep(1000);
-      if (type === "swap" && arr) {
-        setArray(arr);
-      }
-    }
-  };
 
   const algoStart = async (algo: string, funcChoice: Choice) => {
     algo && funcChoice && setWorkingStatus(true);
-    let steps = [];
+
     if (algo === Direction.Ascending && funcChoice === Choice.bubble) {
-      steps = getBubbleSortAscendSteps(array);
-      await animateSteps(steps);
-      setWorkingStatus(false);
+      let steps = getBubbleSortAscendSteps(array!);
+      let step = 0;
+      const anima = setInterval(() => {
+
+        setArray(steps[step])
+        step++
+        if (step === steps.length) {
+          clearInterval(anima);
+          setWorkingStatus(false)
+        }
+      }, 1000);
+
     }
     if (algo === Direction.Descending && funcChoice === Choice.bubble) {
-      steps = getBubbleSortDesscendSteps(array);
-      await animateSteps(steps);
-      setWorkingStatus(false);
+      let steps = getBubbleSortDesscendSteps(array!);
+      let step = 0;
+      const anima = setInterval(() => {
+
+        setArray(steps[step])
+        step++
+        if (step === steps.length) {
+          clearInterval(anima);
+          setWorkingStatus(false)
+        }
+      }, 1000);
     }
     if (algo === Direction.Ascending && funcChoice === Choice.selectsort) {
-      steps = getSelectSortAscendSteps(array);
-      await animateSteps(steps);
-      setWorkingStatus(false);
+
+      let steps = getSelectSortAscendSteps(array!);
+      let step = 0;
+      const anima = setInterval(() => {
+
+        setArray(steps[step])
+        step++
+        if (step === steps.length) {
+          clearInterval(anima);
+          setWorkingStatus(false)
+        }
+      }, 1000);
+
     }
     if (algo === Direction.Descending && funcChoice === Choice.selectsort) {
-      steps = getSelectSortDescendSteps(array);
-      await animateSteps(steps);
-      setWorkingStatus(false);
+
+      let steps = getSelectSortDescendSteps(array!);
+      let step = 0;
+      const anima = setInterval(() => {
+
+        setArray(steps[step])
+        step++
+        if (step === steps.length) {
+          clearInterval(anima);
+          setWorkingStatus(false)
+        }
+      }, 1000);
     }
   };
 
-  const getDefaultStyles = (): void => {
-    Array.from(document.querySelectorAll(".node")).forEach((node) => {
-      node.classList.remove(
-        styles.column_default,
-        styles.column_on_change,
-        styles.column_algo_end
-      );
-    });
-  };
+
 
   return (
     <SolutionLayout title="Сортировка массива">
@@ -153,7 +124,6 @@ export const SortingPage: React.FC = () => {
               algoStart(Direction.Ascending, funcChoice!);
               setButtonState(true);
               setRule(Direction.Ascending);
-              getDefaultStyles();
             }}
           />
           <Button
@@ -169,7 +139,6 @@ export const SortingPage: React.FC = () => {
               algoStart(Direction.Descending, funcChoice!);
               setButtonState(true);
               setRule(Direction.Descending);
-              getDefaultStyles();
             }}
           />
           <Button
@@ -178,7 +147,6 @@ export const SortingPage: React.FC = () => {
             onClick={() => {
               randomArr(setArray, makeUniqueArray, randomNumberCreator);
               setArrayStatus(true);
-              getDefaultStyles();
             }}
           />
         </div>
@@ -187,8 +155,9 @@ export const SortingPage: React.FC = () => {
         {array?.map((el, index) => (
           <Column
             key={index}
-            index={el}
-            extraClass={`${styles.column_extra} column-${index} node`}
+            index={el.value}
+            state={el.colorType === 'select' ? ElementStates.Changing : el.colorType === 'default' ? ElementStates.Default : ElementStates.Modified}
+            extraClass={`${styles.column_extra}`}
           />
         ))}
       </div>
@@ -196,4 +165,4 @@ export const SortingPage: React.FC = () => {
   );
 };
 
-/* randomArr(setArray,makeUniqueArray,randomNumberCreator);  */
+
