@@ -14,21 +14,20 @@ import {
   getSelectSortDescendSteps,
 } from "./utils";
 
-import { TStep } from "./types";
+import { TStep, TArrayItem } from "./types";
 import { sleep } from "../../helpers/sleep-func";
-import { makeUniqueArray } from "../../helpers/random_arr";
-import { randomNumberCreator } from "../../helpers/random_arr";
+import { makeUniqueArray, randomNumberCreator } from "../../helpers/random_arr";
 import { valueCheck } from "../fibonacci-page/utils";
 
 export const SortingPage: React.FC = () => {
-  const [array, setArray] = React.useState<number[]>();
+  const [array, setArray] = React.useState<TArrayItem[]>();
   const [funcChoice, setFuncChoice] = React.useState<Choice>();
   const [buttonState, setButtonState] = React.useState<boolean>();
   const [isWorking, setWorkingStatus] = React.useState<boolean>();
   const [isArrayCreated, setArrayStatus] = React.useState<boolean>();
   const [rule, setRule] = React.useState<Direction>();
 
-  const animateSteps = async (steps: TStep[]) => {
+  /* const animateSteps = async (steps: TStep[]) => {
     for (const step of steps) {
       const { type, data, arr } = step;
       const [first, second, third] = data;
@@ -85,12 +84,12 @@ export const SortingPage: React.FC = () => {
         setArray(arr);
       }
     }
-  };
+  }; */
 
   const algoStart = async (algo: string, funcChoice: Choice) => {
     algo && funcChoice && setWorkingStatus(true);
-    let steps = [];
-    if (algo === Direction.Ascending && funcChoice === Choice.bubble) {
+    let steps = getBubbleSortAscendSteps(array!);
+   /*  if (algo === Direction.Ascending && funcChoice === Choice.bubble) {
       steps = getBubbleSortAscendSteps(array);
       await animateSteps(steps);
       setWorkingStatus(false);
@@ -109,7 +108,7 @@ export const SortingPage: React.FC = () => {
       steps = getSelectSortDescendSteps(array);
       await animateSteps(steps);
       setWorkingStatus(false);
-    }
+    } */
   };
 
   const getDefaultStyles = (): void => {
@@ -187,7 +186,7 @@ export const SortingPage: React.FC = () => {
         {array?.map((el, index) => (
           <Column
             key={index}
-            index={el}
+            index={el.value}
             extraClass={`${styles.column_extra} column-${index} node`}
           />
         ))}

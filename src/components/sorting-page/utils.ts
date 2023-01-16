@@ -1,9 +1,9 @@
 import { randomNumberCreator } from "../../helpers/random_arr";
-import { TStep } from "./types";
+import { TStep, TArrayItem } from "./types";
 
 export const randomArr = (
-  callback: React.Dispatch<React.SetStateAction<number[] | undefined>>,
-  callbackForArray: (arr: number[]) => number[],
+  callback: React.Dispatch<React.SetStateAction<TArrayItem[] | undefined>>,
+  callbackForArray: (arr: number[]) => TArrayItem[],
   createNumberFunc: (key1: number, key2: number) => number
 ) => {
   let size = createNumberFunc(17, 3);
@@ -16,39 +16,49 @@ export const randomArr = (
   callback(callbackForArray(arr));
 };
 ////рефакт пузырька
-export const getBubbleSortAscendSteps = (array: number[] = []): TStep[] => {
-  let copy: number[] = [...array];
-  let steps: TStep[] = [];
-  if (array.length === 0) {
-    steps.push({ type: "default", data: [], arr: [] });
-    return steps;
-  }
-
+export const getBubbleSortAscendSteps = (array: TArrayItem[]): Array<Array<TArrayItem>> => {
+  let copy: TArrayItem[] = [...array];
+ 
+  let steps: Array<Array<TArrayItem>> = [];
+ /*  copy[0] = { colorType: 'select', value: copy[0].value };
+  copy[1] = { colorType: 'select', value: copy[1].value };
+  steps.push([...copy])
+  
+  copy[0] = { colorType: 'final', value: copy[0].value };
+  copy[1] = { colorType: 'final', value: copy[1].value };
+  copy[2] = { colorType: 'select', value: copy[2].value };
+  copy[3] = { colorType: 'select', value: copy[3].value };
+  steps.push([...copy])
+  console.log(steps) */
   for (let j = copy!.length - 1; j >= 0; j--) {
-    for (let i = 0; i <= j; i++) {
-      let first = i;
-      let second = i + 1;
+    for (let i = 0; i < j; i++) {
+   
+   
+      copy[i] = { colorType: 'select', value: copy[i].value };
+      copy[i + 1] = { colorType: 'select', value: copy[i + 1].value };
+    
+      steps.push([...copy]);
+     
 
-      steps.push({ type: "select", data: [first, second], arr: [...copy] });
+      if (copy[i].value > copy[i + 1].value) {
 
-      if (copy[i] > copy[i + 1]) {
+
         const temp = copy![i];
-
         copy![i] = copy![i + 1];
 
         copy![i + 1] = temp;
-        steps.push({ type: "swap", data: [first, second], arr: [...copy] });
+        steps.push([...copy]);
       }
 
-      steps.push({
-        type: "default",
-        data: [first, second, second + 1],
-        arr: { ...copy },
-      });
-    }
-    steps.push({ type: "end", data: [j], arr: [...copy] });
-  }
+      copy[i] = { colorType: 'default', value: copy[i].value };
+      copy[i + 1] = { colorType: 'default', value: copy[i + 1].value };
+      steps.push([...copy]);
 
+    }
+    copy[j] = { colorType: 'final', value: copy[j].value }
+    steps.push([...copy])
+  }
+  console.log(steps) 
   return steps;
 };
 

@@ -3,8 +3,9 @@ export const randomNumberCreator = (min: number, max: number): number => {
 };
 
 export const makeUniqueArray = (arr: number[]) => {
-  let filteredArr = arr.filter((item, index) => {
-    return arr.indexOf(item) === index;
-  });
-  return filteredArr;
+  const uniqArr = [...new Set(arr)];
+  return uniqArr.map(el => {
+    return { colorType: 'default', value: el}
+  })
+ 
 };
