@@ -89,6 +89,15 @@ export const SortingPage: React.FC = () => {
   const algoStart = async (algo: string, funcChoice: Choice) => {
     algo && funcChoice && setWorkingStatus(true);
     let steps = getBubbleSortAscendSteps(array!);
+    let step = 0;
+    const anima = setInterval(() => {
+     
+      setArray(steps[step])
+      step++
+      if (step === steps.length) {
+        clearInterval(anima)
+      }
+   },1000)
    /*  if (algo === Direction.Ascending && funcChoice === Choice.bubble) {
       steps = getBubbleSortAscendSteps(array);
       await animateSteps(steps);

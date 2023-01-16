@@ -20,16 +20,7 @@ export const getBubbleSortAscendSteps = (array: TArrayItem[]): Array<Array<TArra
   let copy: TArrayItem[] = [...array];
  
   let steps: Array<Array<TArrayItem>> = [];
- /*  copy[0] = { colorType: 'select', value: copy[0].value };
-  copy[1] = { colorType: 'select', value: copy[1].value };
-  steps.push([...copy])
-  
-  copy[0] = { colorType: 'final', value: copy[0].value };
-  copy[1] = { colorType: 'final', value: copy[1].value };
-  copy[2] = { colorType: 'select', value: copy[2].value };
-  copy[3] = { colorType: 'select', value: copy[3].value };
-  steps.push([...copy])
-  console.log(steps) */
+
   for (let j = copy!.length - 1; j >= 0; j--) {
     for (let i = 0; i < j; i++) {
    
@@ -58,7 +49,7 @@ export const getBubbleSortAscendSteps = (array: TArrayItem[]): Array<Array<TArra
     copy[j] = { colorType: 'final', value: copy[j].value }
     steps.push([...copy])
   }
-  console.log(steps) 
+  
   return steps;
 };
 
